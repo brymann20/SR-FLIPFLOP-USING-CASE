@@ -2,64 +2,9 @@
 
 **AIM:**
 
-To implement  SR flipflop using verilog and validating their functionality using their functional tables
+To implement SR flipflop using verilog and validating their functionality using their functional tables
 
 **SOFTWARE REQUIRED:**
-### ENCODER 8TO3 DATAFLOW Modelling
-
-**AIM:**
-
-To implement  Encoder 8 To 3 in Dataflow Modelling using verilog and validating their functionality using their functional tables
-
-**SOFTWARE REQUIRED:** Quartus prime
-
-**THEORY**
-
-**Encoder 8 To 3**
-
-The 8 to 3 line Encoder is also known as Octal to Binary Encoder. In 8 to 3 line encoder, there is a total of eight inputs, i.e., D0, D1, D2, D3, D4, D5, D6, and D7 and three outputs, i.e., A0, A1, and A2. In 8-input lines, one input-line is set to true at a time to get the respective binary code in the output side. Below are the block diagram and the truth table of the 8 to 3 line encoder.
-
-![image](https://github.com/naavaneetha/ENCODER8TO3DATAFLOW/assets/154305477/0bc242c1-eb9e-4c47-afe5-30428470efc3)
-
-Figure 01  Block Diagram of Encoder 8 * 3
-
-**Truth Table**
-
-![image](https://github.com/naavaneetha/ENCODER8TO3DATAFLOW/assets/154305477/35496b14-ae6e-4cd1-9abd-d6736b576575)
-
-The logical expression of the term A0, A1, and A2 are as follows:
-
-A0 = D1 + D3 + D5 + D7
-
-A1 = D2 + D3 + D6 + D7
-
-A2 = D4 + D5 + D6 + D7
-
-Logical circuit of the above expressions is given below:
-
-![image](https://github.com/naavaneetha/ENCODER8TO3DATAFLOW/assets/154305477/95acaee6-c873-4c75-89eb-ef09fb158053)
-
-Figure 02  Encoder 8 * 3
-
-**Procedure**
-
-/* write all the steps invloved */
-
-**PROGRAM**
-![WhatsApp Image 2024-11-04 at 01 10 34_2f5a3b6e](https://github.com/user-attachments/assets/16e405c2-6670-4d97-9c34-5f1f1c4e4f0a)
-
-**RTL LOGIC FOR Encoder 8 To 3 in Dataflow Modelling**
-![Screenshot (20)](https://github.com/user-attachments/assets/9179061e-60ee-47ae-ba9d-b1cae504b66b)
-
-**TIMING DIGRAMS FOR Encoder 8 To 3 in Dataflow Modelling**
-![Screenshot (21)](https://github.com/user-attachments/assets/3a2ee8b0-e4e1-454a-9e44-f2d6c485e8ab)
-
-**RESULTS**
-Thus Program for Encoder 8 To 3 in Dataflow Modelling and verify its truth table in quartus using Verilog programming. 
-
-
-
-
 
 Quartus prime
 
@@ -89,16 +34,53 @@ The maximum possible groupings of adjacent ones are already shown in the figure.
 
 **Procedure**
 
-/* write all the steps invloved */
+1.Type the program in Quartus software.
+
+2.Compile and run the program.
+
+3.Generate the RTL schematic and save the logic diagram.
+
+4.Create nodes for inputs and outputs to generate the timing diagram.
+
+5.For different input combinations generate the timing diagram.
+
 
 **PROGRAM**
-
-/* Program for flipflops and verify its truth table in quartus using Verilog programming. Developed by:abdul hameed j 
-RegisterNumber: 212222050001
-*/
-
+```
+Program for flipflops and verify its truth table in quartus using Verilog programming.
+Developed by:Kavinraja D
+RegisterNumber:212222240047
+```
+```verilog
+module EXP_6(q, q_bar, s,r, clk, reset);//SR Flip Flop Behavioral Level using ‘case’ 
+  input s,r,clk, reset;
+  output reg q;
+  output q_bar;
+ 
+  always@(posedge clk) begin // for synchronous reset
+    if(!reset)       
+			q <= 0;
+    else 
+  begin
+      case({s,r})       
+	     2'b00: q <= q;    // No change
+        2'b01:q<=1'b0;   // Write logic for reset
+        2'b10:q<=1'b1;   // Write logic for set
+        2'b11:q<=1'bx;   // Write logic for Invalid state
+      endcase
+    end
+  end
+  assign q_bar = ~q;
+endmodule
+```
 **RTL LOGIC FOR FLIPFLOPS**
+![image](https://github.com/23004513/SR-FLIPFLOP-USING-CASE/assets/138973069/2e7d6ca0-c02b-4c31-b3eb-f90bb1b7e0a5)
+
 
 **TIMING DIGRAMS FOR FLIP FLOPS**
+![image](https://github.com/23004513/SR-FLIPFLOP-USING-CASE/assets/138973069/78e77503-f09f-4696-8e28-41ec277e5350)
+
 
 **RESULTS**
+
+The observation of the simulation results and confirm the successful execution of the program.
